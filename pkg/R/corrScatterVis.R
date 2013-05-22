@@ -49,7 +49,7 @@ corrScatterVis <- function(mat, group, corrmatrix, reorder=TRUE,
   # order variables by clustering
   if(reorder) {
     ord <- hclust(dist(t(mat)), method="ward")$order
-    variables <- variables[ord]
+    varnames <- varnames[ord]
     mat <- mat[,ord]
     corrmatrix <- corrmatrix[ord,ord]
   }
