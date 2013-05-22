@@ -1,0 +1,20 @@
+
+#main svg {
+  margin-top:  10px;
+  margin-left: 50px;
+}
+
+#main .line {
+  stroke-width: 1;
+  fill: none;
+}
+
+#main text {
+ font-family: sans-serif;
+ font-size: 11pt;
+}
+
+#main p {
+ font-family: sans-serif;
+ font-size: 12pt;
+}
