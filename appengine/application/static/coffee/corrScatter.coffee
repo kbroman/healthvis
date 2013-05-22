@@ -45,8 +45,8 @@ HealthvisCorrScatter = () ->
                .attr("id", "scatterplot")
                .attr("transform", "translate(#{pad.left*2+pad.right+w},#{pad.top})")
 
-    this.ind = d3Params.ind
-    this.var = d3Params.var
+    this.indnames = d3Params.indnames
+    this.varnames = d3Params.varnames
     this.corr = JSON.parse(d3Params.corr)
     this.mat = JSON.parse(d3Params.mat)
     this.group = d3Params.group
@@ -56,9 +56,17 @@ HealthvisCorrScatter = () ->
     corrplot = this.corrplot
     scatterplot = this.scatterplot
 
+    innerPad = this.innerPad
+    circleRadius = this.circleRadius
+
+    indnames = this.indnames
+    varnames = this.varnames
+    mat = this.mat
+    group = this.group
+
     # no. data points
-    nind = this.ind.length
-    nvar = this.var.length
+    nind = indnames.length
+    nvar = varnames.length
 
     corXscale = d3.scale.ordinal().domain(d3.range(nvar)).rangeBands([0, w])
     corYscale = d3.scale.ordinal().domain(d3.range(nvar)).rangeBands([h, 0])
@@ -69,7 +77,6 @@ HealthvisCorrScatter = () ->
     for i of this.corr
       for j of this.corr[i]
         corr.push({row:i, col:j, value:this.corr[i][j]})
-
 
     # function to determine rounding of axis labels
     formatAxis = (d) ->
@@ -117,13 +124,13 @@ HealthvisCorrScatter = () ->
                    corrplot.append("text").attr("class","corrlabel")
                            .attr("x", corXscale(d.col))
                            .attr("y", h+pad.bottom*0.2)
-                           .text(this.var[d.col])
+                           .text(varnames[d.col])
                            .attr("dominant-baseline", "middle")
                            .attr("text-anchor", "middle")
                    corrplot.append("text").attr("class","corrlabel")
                            .attr("y", corYscale(d.row))
                            .attr("x", -pad.left*0.1)
-                           .text(this.var[d.row])
+                           .text(varnames[d.row])
                            .attr("dominant-baseline", "middle")
                            .attr("text-anchor", "end"))
                .on("mouseout", ->
@@ -133,7 +140,7 @@ HealthvisCorrScatter = () ->
                .on("click",(d) -> drawScatter(d.col, d.row))
 
     # colors for scatterplot
-    nGroup = d3.max(this.group)
+    nGroup = d3.max(group)
     if nGroup == 1
       colors = [ d3.rgb(150, 150, 150) ]
     else if nGroup <= 3
@@ -155,10 +162,10 @@ HealthvisCorrScatter = () ->
       y = []
       z = []
       for d in d3.range(nind)
-        if this.mat[i][d] != "NA" and this.mat[j][d] != "NA"
-          x.push(this.mat[i][d])
-          y.push(this.mat[j][d])
-          z.push(this.group[d])
+        if mat[i][d] != "NA" and mat[j][d] != "NA"
+          x.push(mat[i][d])
+          y.push(mat[j][d])
+          z.push(group[d])
       return null if x.length == 0
 
       xScale = d3.scale.linear()
@@ -173,7 +180,7 @@ HealthvisCorrScatter = () ->
                  .attr("class", "axes")
                  .attr("x", w/2)
                  .attr("y", h+pad.bottom*0.7)
-                 .text(this.var[i])
+                 .text(varnames[i])
                  .attr("dominant-baseline", "middle")
                  .attr("text-anchor", "middle")
                  .attr("fill", "slateblue")
@@ -182,7 +189,7 @@ HealthvisCorrScatter = () ->
                  .attr("class", "axes")
                  .attr("x", -pad.left*0.8)
                  .attr("y", h/2)
-                 .text(this.var[j])
+                 .text(varnames[j])
                  .attr("dominant-baseline", "middle")
                  .attr("text-anchor", "middle")
                  .attr("transform", "rotate(270,#{-pad.left*0.8},#{h/2})")

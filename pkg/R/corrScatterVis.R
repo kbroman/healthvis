@@ -59,10 +59,10 @@ corrScatterVis <- function(mat, group, corrmatrix, reorder=TRUE,
   names(group) <- NULL
 
   require(df2json)
-  d3Params <- list(ind = indnames,
-                   var = varnames,
+  d3Params <- list(indnames = indnames,
+                   varnames = varnames,
                    corr = df2json::matrix2json(corrmatrix),
-                   mat = df2json::matrix2json(mat),
+                   mat = df2json::matrix2json(t(mat)),
                    group=group,
                    circleRadius = circleRadius)
 
