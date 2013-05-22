@@ -366,7 +366,6 @@ HealthvisManyBox = () ->
                   d3.select("rect#rect#{ind[d]}").attr("opacity", "0")
 
       .on "click", (d) ->
-                console.log("Click: #{ind[d]} (#{d+1})")
                 clickStatus[d] = 1 - clickStatus[d]
                 d3.select("rect#rect#{ind[d]}").attr("opacity", clickStatus[d])
                 if clickStatus[d]
