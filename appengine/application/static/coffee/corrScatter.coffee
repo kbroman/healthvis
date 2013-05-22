@@ -36,22 +36,26 @@ HealthvisCorrScatter = () ->
                  .attr('class', 'chart')
 
     # panel for correlation image
-    this.corrplot = svg.append("g")
+    this.corrplot = this.svg.append("g")
                        .attr("id", "corrplot")
                        .attr("transform", "translate(#{pad.left},#{pad.top})")
 
     # panel for scatterplot
-    this.scatterplot = svg.append("g")
+    this.scatterplot = this.svg.append("g")
                .attr("id", "scatterplot")
                .attr("transform", "translate(#{pad.left*2+pad.right+w},#{pad.top})")
 
-    this.ind = this.d3Params.ind
-    this.var = this.d3Params.var
-    this.corr = JSON.parse(this.d3Params.corr)
-    this.mat = JSON.parse(this.d3Params.mat)
-    this.group = this.d3Params.group
+    this.ind = d3Params.ind
+    this.var = d3Params.var
+    this.corr = JSON.parse(d3Params.corr)
+    this.mat = JSON.parse(d3Params.mat)
+    this.group = d3Params.group
 
   this.visualize = () ->
+
+    corrplot = this.corrplot
+    scatterplot = this.scatterplot
+
     # no. data points
     nind = this.ind.length
     nvar = this.var.length
