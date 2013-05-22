@@ -33,3 +33,5 @@ Collate:
     'zzz.R'
     'pairedVis.R'
     'distVis.R'
+    'corrScatterVis.R'
+    'manyboxVis.R'
