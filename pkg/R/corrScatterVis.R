@@ -4,7 +4,7 @@
 #' matrix (otherwise, it's calculated), potentially sorts the columns
 #' using hierarchical clustering, and makes a heat map of the correlation
 #' matrix with each pixel linked to the corresponding scatterplot.
-#' 
+#'
 #' @param mat The data matrix
 #' @param group Optional vector of groups for coloring points, length = nrow(mat)
 #' @param corrmatrix Optional correlation matrix, dim = ncol(mat) x ncol(mat)
@@ -23,7 +23,7 @@
 corrScatterVis <- function(mat, group, corrmatrix, reorder=TRUE,
                            plot.title="Many box plots", circleRadius = 3,
                            plot=TRUE, gaeDevel=TRUE, url=NULL, ...){
-  
+
   if(is.null(rownames(mat)))
     rownames(mat) <- paste0("ind", 1:nrow(mat))
   if(is.null(colnames(mat)))
@@ -65,7 +65,7 @@ corrScatterVis <- function(mat, group, corrmatrix, reorder=TRUE,
                    mat = df2json::matrix2json(mat),
                    group=group,
                    circleRadius = circleRadius)
-  
+
   # Initialize healthvis object
   healthvisObj <- new("healthvis",
                       plotType="corrScatter",
@@ -75,10 +75,10 @@ corrScatterVis <- function(mat, group, corrmatrix, reorder=TRUE,
                       d3Params=d3Params,
                       gaeDevel=gaeDevel,
                       url=url)
-  
+
   if(plot){
     plot(healthvisObj)
   }
-  
+
   return(healthvisObj)
 }

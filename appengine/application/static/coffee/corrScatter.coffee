@@ -131,25 +131,25 @@ HealthvisCorrScatter = () ->
                    d3.selectAll("text#corrtext").remove()
                    d3.select(this).attr("stroke","none"))
                .on("click",(d) -> drawScatter(d.col, d.row))
-  
+
     # colors for scatterplot
     nGroup = d3.max(this.group)
     if nGroup == 1
       colors = [ d3.rgb(150, 150, 150) ]
     else if nGroup <= 3
       colors = ["crimson", "green", "darkslateblue"]
-    else 
+    else
       if nGroup <= 10
         colorScale = d3.scale.category10()
       else
         colorScale = d3.scale.category20()
       colors = (colorScale(i) for i of d3.range(nGroup))
-  
+
     drawScatter = (i,j) ->
       d3.selectAll("circle.points").remove()
       d3.selectAll("text.axes").remove()
       d3.selectAll("line.axes").remove()
-  
+
       # points that have no missing values
       x = []
       y = []
@@ -159,8 +159,8 @@ HealthvisCorrScatter = () ->
           x.push(this.mat[i][d])
           y.push(this.mat[j][d])
           z.push(this.group[d])
-      return null if x.length == 0 
-  
+      return null if x.length == 0
+
       xScale = d3.scale.linear()
                        .domain(d3.extent(x))
                        .range([innerPad, w-innerPad])
@@ -232,7 +232,7 @@ HealthvisCorrScatter = () ->
                  .attr("x2", w)
                  .attr("stroke", "white")
                  .attr("stroke-width", 1)
-  
+
       # the points
       scatterplot.selectAll("empty")
                  .data(x)
@@ -245,7 +245,7 @@ HealthvisCorrScatter = () ->
                  .attr("stroke", "black")
                  .attr("stroke-width", 1)
                  .attr("fill", (d,i) -> colors[z[i]-1])
-  
+
     # boxes around panels
     corrplot.append("rect")
            .attr("height", h)
@@ -254,7 +254,7 @@ HealthvisCorrScatter = () ->
            .attr("stroke", "black")
            .attr("stroke-width", 1)
            .attr("pointer-events", "none")
-  
+
     scatterplot.append("rect")
                .attr("height", h)
                .attr("width", w)
@@ -262,7 +262,7 @@ HealthvisCorrScatter = () ->
                .attr("stroke", "black")
                .attr("stroke-width", 1)
                .attr("pointer-events", "none")
-  
+
     # text above
     corrplot.append("text")
             .text("Correlation matrix")
@@ -271,7 +271,7 @@ HealthvisCorrScatter = () ->
             .attr("y", -pad.top/2)
             .attr("dominant-baseline", "middle")
             .attr("text-anchor", "middle")
-  
+
     scatterplot.append("text")
                .text("Scatterplot")
                .attr("id", "corrtitle")
