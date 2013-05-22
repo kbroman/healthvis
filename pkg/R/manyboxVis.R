@@ -22,7 +22,7 @@
 #' manyboxVis(testData)
 
 manyboxVis <- function(mat, qu=c(0.01, 0.1, 0.25), orderByMedian=TRUE,
-                       breaks=251, plot.title="Distance Matrix",
+                       breaks=251, plot.title="Many box plots",
                        ylab="Response", xlab="Individuals, sorted by median",
                        plot=TRUE, gaeDevel=TRUE,url=NULL,...){
   
