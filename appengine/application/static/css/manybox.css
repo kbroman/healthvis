@@ -18,3 +18,7 @@
  font-family: sans-serif;
  font-size: 12pt;
 }
+
+div.controls {
+  opacity: 0;
+}
