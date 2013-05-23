@@ -9,4 +9,6 @@ listHealthVis<- function(){
   print("heatmapVis() - Creates interactive heatmap")
   print("pairedVis() - Creates interactive scatterplot matrix")
   print("distVis() - Creates interactive heatmap of distance matrix")
+  print("manyboxVis() - Creates modernized box plots linked to underlying histograms")
+  print("corScatterVis() - Creates heat map of correlation matrix linked to scatterplots")
 }
