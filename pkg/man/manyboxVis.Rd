@@ -1,6 +1,6 @@
 \name{manyboxVis}
 \alias{manyboxVis}
-\title{Create 'many box plots' visualization: interactive, modernized box plots}
+\title{Create modernized box plots linked to underlying histograms}
 \usage{
   manyboxVis(mat, qu = c(0.01, 0.1, 0.25),
     orderByMedian = TRUE, breaks = 251,

@@ -1,4 +1,4 @@
-#' Create 'many box plots' visualization: interactive, modernized box plots
+#' Create modernized box plots linked to underlying histograms
 #'
 #' \code{manyboxVis} takes a matrix input, calculates a set of quantiles for
 #' each column, potentially sorts the columns by the median, and makes a plot
