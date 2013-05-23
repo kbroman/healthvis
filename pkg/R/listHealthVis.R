@@ -3,6 +3,8 @@
 #' @export
 
 listHealthVis<- function(){
+  print <- function(x) cat("   ", x, "\n")
+
   print("survivalVis() - Creates interactive survival plots")  
   print("accuracyTableVis() - Creates interactive accuracy table plots")
   print("iconArrayVis() - Creates interactive icon array")
